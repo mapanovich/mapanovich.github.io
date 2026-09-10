@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯搜索入口引擎-俄语搜索与俄网资源导航平台</title>
+    <meta name="description" content="俄罗斯搜索入口引擎提供俄语搜索、Yandex、Mail.ru等主流俄语搜索引擎入口，以及俄罗斯网站导航、俄语工具与搜索技巧，帮助您高效获取俄语互联网资源。">
+    <meta name="keywords" content="俄罗斯搜索入口引擎,俄语搜索,Yandex,俄罗斯搜索引擎,俄网导航,俄语工具">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #f5f7fa; color: #2c3e50; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* 头部 */
+        .site-header { background: #1a3a5c; color: #fff; padding: 1rem 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+        .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+        .logo h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: 1px; }
+        .logo span { color: #ffd966; }
+        .site-nav ul { display: flex; gap: 24px; }
+        .site-nav a { color: #e0e8f0; font-weight: 500; padding: 5px 0; border-bottom: 2px solid transparent; transition: 0.2s; }
+        .site-nav a:hover { color: #fff; border-bottom-color: #ffd966; }
+
+        /* 搜索主区 */
+        .search-hero { background: linear-gradient(135deg, #1a3a5c 0%, #2c5a8c 100%); padding: 3rem 0 3.5rem; color: #fff; text-align: center; }
+        .search-hero h2 { font-size: 2.2rem; margin-bottom: 0.8rem; font-weight: 700; }
+        .search-hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2rem; }
+        .search-box { display: flex; max-width: 680px; margin: 0 auto; background: #fff; border-radius: 50px; overflow: hidden; box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+        .search-box input { flex: 1; border: none; outline: none; padding: 16px 24px; font-size: 1.1rem; color: #2c3e50; }
+        .search-box button { background: #ffd966; border: none; color: #1a3a5c; font-weight: 700; font-size: 1.1rem; padding: 0 30px; cursor: pointer; transition: 0.3s; }
+        .search-box button:hover { background: #f0c24b; }
+        .search-tools { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 1.5rem; }
+        .search-tools a { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 30px; font-size: 0.95rem; transition: 0.3s; }
+        .search-tools a:hover { background: rgba(255,255,255,0.3); }
+
+        /* 主流引擎 */
+        .section { padding: 3rem 0; }
+        .section-title { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; color: #1a3a5c; }
+        .section-sub { text-align: center; color: #6b7a8f; margin-bottom: 2.5rem; }
+        .engine-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .engine-card { background: #fff; border-radius: 16px; padding: 2rem 1.8rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #2c5a8c; }
+        .engine-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+        .engine-card h3 { font-size: 1.5rem; color: #1a3a5c; margin-bottom: 0.5rem; }
+        .engine-card .domain { color: #6b7a8f; font-size: 0.9rem; margin-bottom: 1rem; border-bottom: 1px dashed #dce1e8; padding-bottom: 0.5rem; }
+        .engine-card p { color: #40556e; margin-bottom: 1.5rem; }
+        .btn { display: inline-block; background: #2c5a8c; color: #fff; padding: 8px 22px; border-radius: 30px; font-weight: 600; transition: 0.3s; }
+        .btn:hover { background: #1a3a5c; }
+        .btn-outline { background: transparent; border: 2px solid #2c5a8c; color: #2c5a8c; margin-left: 10px; }
+        .btn-outline:hover { background: #2c5a8c; color: #fff; }
+
+        /* 分类导航 */
+        .category-links { background: #fff; padding: 3rem 0; }
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 20px; }
+        .cat-item { background: #f0f4fa; border-radius: 12px; padding: 1.5rem 1rem; text-align: center; transition: 0.3s; }
+        .cat-item:hover { background: #e0e9f5; transform: scale(1.03); }
+        .cat-item .emoji { font-size: 2.2rem; display: block; margin-bottom: 0.5rem; }
+        .cat-item span { font-weight: 600; color: #1a3a5c; }
+
+        /* 俄语工具 */
+        .tools-section { background: #fff; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .tool-item { background: #f8fafc; border: 1px solid #e8edf3; border-radius: 12px; padding: 1.5rem; transition: 0.2s; }
+        .tool-item:hover { border-color: #2c5a8c; }
+        .tool-item h4 { color: #1a3a5c; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .tool-item p { font-size: 0.9rem; color: #6b7a8f; }
+        .tool-item a { color: #2c5a8c; font-weight: 600; display: inline-block; margin-top: 0.6rem; }
+
+        /* FAQ */
+        .faq-section { background: #f5f7fa; }
+        .faq-list { max-width: 850px; margin: 0 auto; }
+        .faq-item { background: #fff; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
+        .faq-item h3 { color: #1a3a5c; font-size: 1.2rem; margin-bottom: 0.6rem; }
+        .faq-item p { color: #40556e; }
+
+        /* 底部 */
+        .site-footer { background: #1a3a5c; color: #cbd5e1; padding: 2.5rem 0 1.5rem; margin-top: 2rem; }
+        .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+        .footer-col h4 { color: #fff; margin-bottom: 1rem; font-size: 1.1rem; }
+        .footer-col ul li { margin-bottom: 0.5rem; }
+        .footer-col a { color: #cbd5e1; }
+        .footer-col a:hover { color: #ffd966; }
+        .footer-bottom { border-top: 1px solid #2c5a8c; margin-top: 2rem; padding-top: 1.5rem; text-align: center; font-size: 0.9rem; }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; text-align: center; }
+            .site-nav ul { justify-content: center; gap: 15px; flex-wrap: wrap; }
+            .search-hero h2 { font-size: 1.6rem; }
+            .search-hero p { font-size: 1rem; }
+            .search-box { flex-direction: column; border-radius: 20px; }
+            .search-box input { width: 100%; border-radius: 20px 20px 0 0; padding: 15px 20px; }
+            .search-box button { width: 100%; border-radius: 0 0 20px 20px; padding: 15px; }
+            .section-title { font-size: 1.7rem; }
+            .footer-inner { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .engine-grid { grid-template-columns: 1fr; }
+            .cat-grid { grid-template-columns: repeat(2, 1fr); }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">
+                <h1>俄罗斯<span>搜索</span>入口引擎</h1>
+            </div>
+            <nav class="site-nav">
+                <ul>
+                    <li><a href="#engines">搜索引擎</a></li>
+                    <li><a href="#categories">网站分类</a></li>
+                    <li><a href="#tools">俄语工具</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 搜索首屏 -->
+        <section class="search-hero">
+            <div class="container">
+                <h2>一站式俄语搜索与俄罗斯网络资源入口</h2>
+                <p>聚合 Yandex、Mail.ru 等主流俄语搜索入口，快速直达俄罗斯互联网。无论学术、商务还是日常信息查询，这里都能帮您找到起点。</p>
+                <div class="search-box">
+                    <input type="text" placeholder="输入关键词搜索俄语网络资源..." aria-label="搜索关键词">
+                    <button type="button">搜索</button>
+                </div>
+                <div class="search-tools">
+                    <a href="#engines">搜索引擎推荐</a>
+                    <a href="#categories">热门网站导航</a>
+                    <a href="#tools">翻译与工具</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 主流搜索引擎 -->
+        <section class="section" id="engines">
+            <div class="container">
+                <h2 class="section-title">俄罗斯主流搜索引擎</h2>
+                <p class="section-sub">选择适合您需求的俄语搜索入口</p>
+                <div class="engine-grid">
+                    <article class="engine-card">
+                        <h3>Yandex</h3>
+                        <div class="domain">yandex.ru</div>
+                        <p>俄罗斯最受欢迎的搜索引擎，市场份额领先。提供网页、图片、视频、地图、翻译等全面服务，是俄语搜索的首选入口。</p>
+                        <a href="https://yandex.ru" target="_blank" rel="noopener noreferrer" class="btn">访问 Yandex</a>
+                        <a href="https://yandex.com" target="_blank" rel="noopener noreferrer" class="btn btn-outline">国际版</a>
+                    </article>
+                    <article class="engine-card">
+                        <h3>Mail.ru Search</h3>
+                        <div class="domain">go.mail.ru</div>
+                        <p>由 Mail.ru 集团运营的搜索服务，与邮箱、社交等生态深度整合。在俄语用户中拥有较高使用率。</p>
+                        <a href="https://go.mail.ru" target="_blank" rel="noopener noreferrer" class="btn">访问 Mail.ru</a>
+                    </article>
+                    <article class="engine-card">
+                        <h3>Rambler</h3>
+                        <div class="domain">rambler.ru</div>
+                        <p>俄罗斯历史悠久的门户与搜索引擎之一，提供新闻、搜索、邮件等服务，适合了解俄语新闻资讯。</p>
+                        <a href="https://www.rambler.ru" target="_blank" rel="noopener noreferrer" class="btn">访问 Rambler</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 实用导航分类 -->
+        <section class="category-links" id="categories">
+            <div class="container">
+                <h2 class="section-title">俄罗斯网站快速导航</h2>
+                <p class="section-sub">按类别直达常用俄语网站</p>
+                <div class="cat-grid">
+                    <a href="#" class="cat-item"><span class="emoji">📰</span><span>新闻媒体</span></a>
+                    <a href="#" class="cat-item"><span class="emoji">🎓</span><span>教育学术</span></a>
+                    <a href="#" class="cat-item"><span class="emoji">🛒</span><span>电商购物</span></a>
+                    <a href="#" class="cat-item"><span class="emoji">🏛️</span><span>政府机构</span></a>
+                    <a href="#" class="cat-item"><span class="emoji">💬</span><span>社交平台</span></a>
+                    <a href="#" class="cat-item"><span class="emoji">🎬</span><span>影音娱乐</span></a>
+                    <a href="#" class="cat-item"><span class="emoji">💻</span><span>科技IT</span></a>
+                    <a href="#" class="cat-item"><span class="emoji">🏥</span><span>医疗健康</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 俄语工具与资源 -->
+        <section class="section tools-section" id="tools">
+            <div class="container">
+                <h2 class="section-title">俄语搜索辅助工具</h2>
+                <p class="section-sub">提升您的俄语网络使用效率</p>
+                <div class="tools-grid">
+                    <div class="tool-item">
+                        <h4>Yandex Translate</h4>
+                        <p>支持俄语与多语言互译，精准度高，适合理解俄语网页内容。</p>
+                        <a href="https://translate.yandex.ru" target="_blank" rel="noopener noreferrer">前往翻译 →</a>
+                    </div>
+                    <div class="tool-item">
+                        <h4>俄语键盘布局</h4>
+                        <p>在线俄语字母输入工具，无需安装键盘即可输入俄语关键词。</p>
+                        <a href="#" onclick="alert('您可以使用系统自带的俄语键盘布局，或在移动端添加俄语输入法。'); return false;">使用说明 →</a>
+                    </div>
+                    <div class="tool-item">
+                        <h4>俄语字母表与发音</h4>
+                        <p>快速学习俄语字母与发音基础，辅助搜索关键词拼写。</p>
+                        <a href="#" onclick="alert('俄语字母表共33个字母。建议先熟悉字母形状与发音，再尝试输入搜索。'); return false;">学习字母 →</a>
+                    </div>
+                    <div class="tool-item">
+                        <h4>俄罗斯网站目录</h4>
+                        <p>涵盖政府、教育、文化、商业等权威网站分类整理。</p>
+                        <a href="#" onclick="alert('可参考俄罗斯联邦政府官网 gov.ru 或各行业门户网站。'); return false;">查看目录 →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 搜索技巧与建议 -->
+        <section class="section" style="background: #fff;">
+            <div class="container">
+                <h2 class="section-title">俄语搜索使用技巧</h2>
+                <div class="faq-list" style="max-width: 850px; margin: 0 auto;">
+                    <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1rem;">
+                        <h3 style="color: #1a3a5c; font-size: 1.2rem; margin-bottom: 0.6rem;">1. 使用俄语关键词</h3>
+                        <p>俄语搜索引擎对俄语内容的索引最完整。尝试将中文关键词翻译成俄语，能获得更多准确结果。例如搜索“новости”比搜索“俄罗斯新闻”更直接。</p>
+                    </div>
+                    <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1rem;">
+                        <h3 style="color: #1a3a5c; font-size: 1.2rem; margin-bottom: 0.6rem;">2. 活用 Yandex 高级搜索</h3>
+                        <p>Yandex 支持使用引号精确搜索、使用 site: 限定域名、使用减号排除关键词等指令，帮助您缩小搜索范围。</p>
+                    </div>
+                    <div style="background: #f8fafc; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1rem;">
+                        <h3 style="color: #1a3a5c; font-size: 1.2rem; margin-bottom: 0.6rem;">3. 切换区域设置</h3>
+                        <p>部分俄罗斯网站会根据 IP 显示不同内容。如需访问本地化服务，可使用俄区网络环境或调整搜索引擎的区域选项。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 FAQ -->
+        <section class="section faq-section" id="faq">
+            <div class="container">
+                <h2 class="section-title">关于俄罗斯搜索入口的常见问题</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>俄罗斯有哪些常用的搜索引擎？</h3>
+                        <p>俄罗斯最常用的是 Yandex，其次是 Mail.ru 搜索和 Rambler。Yandex 的市场占有率最高，功能也最全面。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Yandex 有英文版或中文界面吗？</h3>
+                        <p>Yandex 主站提供英文界面，可通过右上角语言切换。但搜索俄语内容时，建议使用俄语界面以获得更精准的搜索建议。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>如何访问俄罗斯本地网站？</h3>
+                        <p>大部分俄罗斯网站全球可访问。若遇到访问限制，可检查网络设置或使用合规的网络工具。搜索入口引擎提供的主要入口均可直接访问。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>俄语不好，如何搜索俄罗斯网站？</h3>
+                        <p>可以先使用翻译工具将关键词翻译成俄语，再在 Yandex 中搜索。也可以使用 Yandex 的图片搜索功能，通过图片寻找相关内容。</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>这个网站收录了哪些资源？</h3>
+                        <p>本站主要收录俄罗斯主流搜索引擎入口、常用网站导航分类，以及实用的俄语搜索辅助工具，帮助您快速开启俄罗斯互联网之旅。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-col">
+                    <h4>俄罗斯搜索入口引擎</h4>
+                    <ul>
+                        <li><a href="#engines">搜索引擎</a></li>
+                        <li><a href="#categories">网站导航</a></li>
+                        <li><a href="#tools">工具资源</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>常用入口</h4>
+                    <ul>
+                        <li><a href="https://yandex.ru" target="_blank" rel="noopener noreferrer">Yandex</a></li>
+                        <li><a href="https://go.mail.ru" target="_blank" rel="noopener noreferrer">Mail.ru</a></li>
+                        <li><a href="https://www.rambler.ru" target="_blank" rel="noopener noreferrer">Rambler</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关于本站</h4>
+                    <ul>
+                        <li>本站提供俄罗斯搜索导航服务</li>
+                        <li>信息仅供参考</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 俄罗斯搜索入口引擎 - 致力于连接俄语互联网资源</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
